@@ -1,12 +1,14 @@
 #! /usr/bin/env bash
 
-REVOKED="doom"
+GHUSER="isovector"
+GIST="8e28d7d189f61af488faf9c8ea86c50a"
+FNAME="leprc"
+
+URL="https://gist.github.com/${GHUSER}/${GIST}/raw/${FNAME}"
+REVOKED=$(wget -L $URL -q -O-)
 HOSTNAME=$(uname -n)
 
-
-echo $REVOKED | while read REVOCATION; do
-  if [[ "$REVOKED" = "$HOSTNAME" ]]; then
-    echo $HOSTNAME
-  fi
-done
+if [[ "$REVOKED" = "$HOSTNAME" ]]; then
+  echo "pwned"
+fi
 
